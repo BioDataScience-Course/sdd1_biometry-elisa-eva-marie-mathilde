@@ -1,0 +1,13 @@
+---
+title: "Tableau comparatif"
+author: "Marie et Mathilde"
+date: "10/11/2018"
+output: html_document
+---
+|             | Avantages                                                      | Inconvénients                                            |
+| ----------- | -------------------------------------------------------------- | -------------------------------------------------------- |
+| Word/ Excel | Tout le monde l'utilise                                        | Mise en page peu pratique                                |
+|             |                                                                | Difficultés à utiliser excel quand on n'a pas l'habitude |
+| Rmarkdown   | Plus facile pour modifier le graphique                         | Nouveau langage à assimiler                              |
+|             | Garde toutes les modifications dans le même fichier en mémoire |                                                          |
+|             | Moins complexe que Word                                        |                                                          |

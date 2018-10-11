@@ -1,8 +1,10 @@
 ---
 title: "R Notebook"
-author: "..."
-date: "..."
-output: html_notebook
+author: '...'
+date: '...'
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup}
@@ -12,7 +14,7 @@ options(data.io_lang = "fr") # Labels en français
 
 
 ```{r importation}
-biometry <- read("../data/biometry_2014.xlsx")
+biometry <- read("../data/biometry_2016.xlsx")
 ```
 
 

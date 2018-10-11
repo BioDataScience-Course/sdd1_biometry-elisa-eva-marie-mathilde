@@ -14,3 +14,10 @@ options(data.io_lang = "fr") # Labels en français
 ```{r importation}
 biometry <- read("../data/biometry_2014.xlsx")
 ```
+
+
+```{r}
+chart(biometry, formula = height ~ weight %color=% gender) +
+  geom_point(na.rm = TRUE)
+```
+

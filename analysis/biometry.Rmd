@@ -22,4 +22,3 @@ biometry <- read("../data/biometry_2016.xlsx")
 chart(biometry, formula = height ~ weight %color=% gender) +
   geom_point(na.rm = TRUE)
 ```
-

@@ -33,3 +33,10 @@ vis_dat(n_bio_fill)
 # save rds
 
 write(n_bio_fill, file = "data/biometry.rds", type = "rds", compress = "xz")
+
+
+
+# Graphique
+
+chart(data = n_bio_fill, ~ masse) +
+  geom_bar(na.rm=TRUE)

@@ -38,5 +38,19 @@ write(n_bio_fill, file = "data/biometry.rds", type = "rds", compress = "xz")
 
 # Graphique
 
+chart(data = n_bio_fill, ~ factor (0) %fill=% genre) +
+  geom_bar(width = 1) +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  scale_fill_viridis_d()
+
 chart(data = n_bio_fill, ~ masse) +
   geom_bar(na.rm=TRUE)
+
+chart(data = n_bio_fill, taille ~ masse | genre) +
+  geom_point(na.rm=TRUE)
+
+chart(data = n_bio_fill, acti_profession ~ masse %col=%acti_profession) +
+  geom_point(na.rm=TRUE)
+
+

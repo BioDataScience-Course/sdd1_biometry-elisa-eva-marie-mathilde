@@ -19,38 +19,38 @@ summary(n_bio)
 vis_dat(n_bio)
 
 # filter
-n_bio_fill <- filter(n_bio, taille != "NA")
+n_bio_fil <- filter(n_bio, taille != "NA")
 
-vis_dat(n_bio_fill)
+vis_dat(n_bio_fil)
 
 # change type
 
-n_bio_fill$genre <- factor(n_bio_fill$genre, levels = c("h", "f"))
-n_bio_fill$hainaut <- factor(n_bio_fill$hainaut, levels = c("o", "n"))
+n_bio_fil$genre <- factor(n_bio_fil$genre, levels = c("h", "f"))
+n_bio_fil$hainaut <- factor(n_bio_fil$hainaut, levels = c("o", "n"))
 
-vis_dat(n_bio_fill)
+vis_dat(n_bio_fil)
 
 # save rds
 
-write(n_bio_fill, file = "data/biometry.rds", type = "rds", compress = "xz")
+write(n_bio_fil, file = "data/biometry.rds", type = "rds", compress = "xz")
 
 
 
 # Graphique
 
-chart(data = n_bio_fill, ~ factor (0) %fill=% genre) +
+chart(data = n_bio_fil, ~ factor (0) %fill=% genre) +
   geom_bar(width = 1) +
   coord_polar("y", start = 0) +
   theme_void() +
   scale_fill_viridis_d()
 
-chart(data = n_bio_fill, ~ masse) +
+chart(data = n_bio_fil, ~ masse) +
   geom_bar(na.rm=TRUE)
 
-chart(data = n_bio_fill, taille ~ masse | genre) +
+chart(data = n_bio_fil, taille ~ masse | genre) +
   geom_point(na.rm=TRUE)
 
-chart(data = n_bio_fill, acti_profession ~ masse %col=%acti_profession) +
+chart(data = n_bio_fil, acti_profession ~ masse %col=%acti_profession) +
   geom_point(na.rm=TRUE)
 
 

@@ -48,9 +48,9 @@ n_bio_fil$hainaut <- factor(n_bio_fil$hainaut, levels = c("o", "n"))
  
 # But 
 
- Nous avons effectué differentes mesures sur un nombre de 266 individus vivant  dans l'Hainaut afin de collecter un nombre de données suffisant pour étudier  le taux d'obesité dans cette région.
+ Nous avons effectué differentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier  le taux d'obesité dans cette région.
 
-# Materiéls et méthodes 
+# Materiels et méthodes 
  
  Nous avons 
 
@@ -80,6 +80,10 @@ chisq.test(n_bio_genre, p = c(1/2, 1/2), rescale.p = FALSE)
 t.test(data = n_bio_fil, masse ~ genre,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
+
+## Test de Wilcoxon
+
+## Test de Kruskal-Wallis
 
 # Discussion
 

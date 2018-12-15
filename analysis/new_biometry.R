@@ -50,7 +50,7 @@ chart(data = n_bio_fil, ~ masse) +
 chart(data = n_bio_fil, taille ~ masse | genre) +
   geom_point(na.rm=TRUE)
 
-chart(data = n_bio_fil, acti_profession ~ masse %col=%acti_profession) +
-  geom_point(na.rm=TRUE)
+chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
+  geom_violin(show.legend = FALSE)
 
 

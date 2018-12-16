@@ -73,7 +73,7 @@ chart(data = n_bio_fil, log10(taille) ~ log10(masse) %col=% genre) +
   labs ( x ="log (masse[kg])", y="log (taille[m])")
 ```
 
-Contrairement à nos attentes, la taille n'as que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithimique n'as pas linéalisé celui li. 
+Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithmique n'a pas linéalisé celui ci. 
 
 ### Graphique violon de la masse selon l'activité professionnel
 
@@ -82,7 +82,7 @@ chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   geom_violin(show.legend = FALSE)
 ```
 
-Ce graphique nous permet de confirmer que la majorité des indivus font entre 60-80kg quelques soit leur profession. De plus, les personnes sédentaires ont un poid beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
+Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelques soit leur profession. De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
 
 ### Histogramme de lâge par rapport au genre
 
@@ -100,7 +100,7 @@ Notre échantillon regroupe un nombre important de personnes ayant moins de 25 a
 chart(data = n_bio_fil, ~ fastfood)+
   geom_bar(na.rm = TRUE)
 ```
-La plupart des individus de notre échantillon entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
+La plupart des individus de notre échantillon consomment entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
 
 
 

@@ -38,7 +38,8 @@ vis_dat(n_bio_fil)
 
 n_bio_fil$genre <- factor(n_bio_fil$genre, levels = c("h", "f"))
 n_bio_fil$hainaut <- factor(n_bio_fil$hainaut, levels = c("o", "n"))
-
+n_bio_fil$acti_profession <- ordered(n_bio_fil$acti_profession,
+                                     levels = c("sedentaire", "intermediaire", "actif"))
 
 ```
 
@@ -55,59 +56,52 @@ n_bio_fil$hainaut <- factor(n_bio_fil$hainaut, levels = c("o", "n"))
  
 
 # Résultats
-
+## Les graphiques
+### Histogramme de la masse des individus selon le genre de ceux-ci
 ```{r graphique 1}
-chart(data = n_bio_fil, ~ factor (0) %fill=% genre) +
-  geom_bar(width = 1) +
-  coord_polar("y", start = 0) +
-  theme_void() +
-  scale_fill_viridis_d()
+chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
+  geom_histogram(bins = 50, na.rm = TRUE)
 ```
 
-```{r graphique 2}
-chart(data = n_bio_fil, ~ masse) +
-  geom_bar(na.rm=TRUE)
+La masse de l'échantillon est regrouper principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent en généralité une masse inférieur à celles des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
+
+
+###Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
+```{r graphique2}
+chart(data = n_bio_fil, log10(taille) ~ log10(masse) %col=% genre) +
+  geom_point(na.rm=TRUE)+
+  labs ( x ="log (masse[kg])", y="log (taille[m])")
 ```
+
+Contrairement à nos attentes, la taille n'as que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithimique n'as pas linéalisé celui li. 
+
+### Graphique violon de la masse selon l'activité professionnel
 
 ```{r graphique 3}
-chart(data = n_bio_fil, taille ~ masse | genre) +
-  geom_point(na.rm=TRUE)
-```
-
-```{r graphique 4}
 chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   geom_violin(show.legend = FALSE)
 ```
 
-```{r graphique 5}
+Ce graphique nous permet de confirmer que la majorité des indivus font entre 60-80kg quelques soit leur profession. De plus, les personnes sédentaires ont un poid beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
+
+### Histogramme de lâge par rapport au genre
+
+```{r graphique 4}
 chart(data = n_bio_fil, ~ age %fill=% genre)+
-  geom_histogram(bins = 30)
+  geom_histogram(bins = 30, na.rm = TRUE)
 ```
 
-```{r graphique 6}
-chart(data = n_bio_fil, tour_taille ~ tour_hanche)+
-  geom_point(na.rm = TRUE)
-```
+Notre échantillon regroupe un nombre important de personnes ayant moins de 25 ans. De plus, le genre masculin prédomine dans notre échantillon.
 
-```{r graphique 7}
+
+### Graphique en barre pour voir le dénombrement des fast food par semaine
+
+```{r graphique 5}
 chart(data = n_bio_fil, ~ fastfood)+
   geom_bar(na.rm = TRUE)
 ```
+La plupart des individus de notre échantillon entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
 
-```{r graphique 8}
-chart(data = n_bio_fil, alcool ~ age)+
-  geom_point(na.rm = TRUE)
-```
-
-```{r graphique 9}
-chart(data = n_bio_fil, ~ grignotage %fill=% genre)+
-  geom_bar()
-```
-
-```{r graphique 10}
-chart(data = n_bio_fil, ~ tour_poignet %col=% genre)+
-  geom_density()
-```
 
 
 ## Test d'hypothèse
@@ -136,6 +130,19 @@ t.test(data = n_bio_fil, masse ~ genre,
 ```
 
 ## Test de Wilcoxon
+
+H0: P(masse femme > masse homme) = P(masse femme < masse homme)
+
+H1: P(masse femme > masse homme) > P(masse femme < masse homme)
+
+
+```{r}
+wilcox.test(data = n_bio_fil, masse ~ genre,
+  alternative = "greater", conf.level = 0.95)
+```
+
+On peut rejetter H0
+
 
 ## Test de Kruskal-Wallis
 

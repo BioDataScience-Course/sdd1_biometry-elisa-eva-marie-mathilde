@@ -37,20 +37,54 @@ write(n_bio_fil, file = "data/biometry.rds", type = "rds", compress = "xz")
 
 
 # Graphique
-
+# graphique 1
 chart(data = n_bio_fil, ~ factor (0) %fill=% genre) +
   geom_bar(width = 1) +
   coord_polar("y", start = 0) +
   theme_void() +
   scale_fill_viridis_d()
 
+
+#graphique 2
 chart(data = n_bio_fil, ~ masse) +
   geom_bar(na.rm=TRUE)
 
+
+#graphique 3
 chart(data = n_bio_fil, taille ~ masse | genre) +
   geom_point(na.rm=TRUE)
 
+
+#graphique 4
 chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   geom_violin(show.legend = FALSE)
 
 
+#graphique 5
+chart(data = n_bio_fil, ~ age %fill=% genre)+
+  geom_histogram(bins = 30)
+
+
+#graphique 6
+chart(data = n_bio_fil, tour_taille ~ tour_hanche)+
+  geom_point(na.rm = TRUE)
+
+
+#graphique 7
+chart(data = n_bio_fil, ~ fastfood)+
+  geom_bar(na.rm = TRUE)
+
+
+#graphique 8
+chart(data = n_bio_fil, alcool ~ age)+
+  geom_point(na.rm = TRUE)
+
+
+#graphique 9
+chart(data = n_bio_fil, ~ grignotage %fill=% genre)+
+  geom_bar()
+
+
+#graphique 10
+chart(data = n_bio_fil, ~ tour_poignet %col=% genre)+
+  geom_density()

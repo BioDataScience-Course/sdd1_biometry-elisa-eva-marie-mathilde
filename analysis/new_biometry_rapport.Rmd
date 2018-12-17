@@ -45,7 +45,7 @@ n_bio_fil$acti_profession <- ordered(n_bio_fil$acti_profession,
 
 # Introduction
  
-Dans ce projet nous allors étudier le taux d'obesité dans l'Hainaut à prtir de données colléctés dans cette région par difféentes personne. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à differentes mésurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
+Dans ce projet nous alons étudier le taux d'obesité dans le Hainaut à partir de données colléctées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mesurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
  
 # But 
 
@@ -59,7 +59,7 @@ Les paramètres mésurés et les et les informations à propos du mode de vie de
 skimr::skim(n_bio_fil)
 ```
 
-Pour effectuer les mésurations nous avons utilisé plusieurs outils tels que un mètre et une balance, qui n'etaient malhereusement pas les mêmes tout au long de l'étude. Ce-ci pourrait se traduire par des éventuels erreurs de calcul. 
+Pour effectuer les mesurations nous avons utilisé plusieurs outils tels qu'un mètre et une balance, qui n'etaient malhereusement pas les mêmes tout au long de l'étude. Ce-ci pourrait se traduire par des éventuels erreurs de calcul. 
 
 # Résultats
 

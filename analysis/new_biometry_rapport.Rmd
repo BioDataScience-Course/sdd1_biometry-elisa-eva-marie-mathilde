@@ -32,7 +32,7 @@ summary(n_bio)
 
 n_bio_fil <- filter(n_bio, taille != "NA")
 
-vis_dat(n_bio_fil)
+
 
 # change type
 
@@ -40,6 +40,7 @@ n_bio_fil$genre <- factor(n_bio_fil$genre, levels = c("h", "f"))
 n_bio_fil$hainaut <- factor(n_bio_fil$hainaut, levels = c("o", "n"))
 n_bio_fil$acti_profession <- ordered(n_bio_fil$acti_profession,
                                      levels = c("sedentaire", "intermediaire", "actif"))
+vis_dat(n_bio_fil)
 
 ```
 
@@ -120,6 +121,9 @@ La plupart des individus de notre échantillon consomment entre 0 et 1 fast food
 
 ## Test d'hypothèse
 
+H0 : P(homme) = P(femme)
+H1 : P(homme) != P(femme)
+
 * Tableau de contigence
 ```{r}
 (n_bio_genre <- as.table(c(" homme" = 135 , "femme"= 131)))
@@ -136,12 +140,19 @@ sum(n_bio_genre)
 chisq.test(n_bio_genre, p = c(1/2, 1/2), rescale.p = FALSE)
 ```
 
+Rejet de H0, il est clair que le nombre de femmes et des hommes n'est pas equivqlent.
+
 ## Test de Student
 
+H0 : moyenne masse femmes = moyenne masse hommes
+H1 : moyenne masse femmes != moyenne masse hommes 
+ 
 ```{r}
 t.test(data = n_bio_fil, masse ~ genre,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
+
+Nous rejetons H0 car la moyenne de la masse des hommes est supérieure à la moyenne de la masse des femmes.
 
 ## Test de Wilcoxon
 

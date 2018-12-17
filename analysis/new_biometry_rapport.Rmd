@@ -45,32 +45,43 @@ n_bio_fil$acti_profession <- ordered(n_bio_fil$acti_profession,
 
 # Introduction
  
- 
+Dans ce projet nous allors étudier le taux d'obesité dans l'Hainaut à prtir de données colléctés dans cette région par difféentes personne. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à differentes mésurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
  
 # But 
 
- Nous avons effectué differentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier  le taux d'obesité dans cette région.
+Nous avons effectué differentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier le taux d'obesité dans cette région.
 
 # Materiels et méthodes 
  
- 
+Les paramètres mésurés et les et les informations à propos du mode de vie des individus peuvent être inspectés ci-dessous : 
+
+```{r}
+skimr::skim(n_bio_fil)
+```
+
+Pour effectuer les mésurations nous avons utilisé plusieurs outils tels que un mètre et une balance, qui n'etaient malhereusement pas les mêmes tout au long de l'étude. Ce-ci pourrait se traduire par des éventuels erreurs de calcul. 
 
 # Résultats
+
 ## Les graphiques
+
 ### Histogramme de la masse des individus selon le genre de ceux-ci
+
 ```{r graphique 1}
 chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
-  geom_histogram(bins = 50, na.rm = TRUE)
+  geom_histogram(bins = 50, na.rm = TRUE) +
+  labs(x = "Masse corrigé[kg]", y = "Effectif")
 ```
 
 La masse de l'échantillon est regrouper principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent en généralité une masse inférieur à celles des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
 
 
-###Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
+### Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
+
 ```{r graphique2}
 chart(data = n_bio_fil, log10(taille) ~ log10(masse) %col=% genre) +
-  geom_point(na.rm=TRUE)+
-  labs ( x ="log (masse[kg])", y="log (taille[m])")
+  geom_point(na.rm = TRUE) +
+  labs( x = "log (masse[kg])", y = "log (taille[m])")
 ```
 
 Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithmique n'a pas linéalisé celui ci. 
@@ -79,7 +90,8 @@ Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. 
 
 ```{r graphique 3}
 chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
-  geom_violin(show.legend = FALSE)
+  geom_violin(show.legend = FALSE) +
+  labs(x = "Activité professionnelle", y = "Masse[kg]")
 ```
 
 Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelques soit leur profession. De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
@@ -88,7 +100,8 @@ Ce graphique nous permet de confirmer que la majorité des individus font entre 
 
 ```{r graphique 4}
 chart(data = n_bio_fil, ~ age %fill=% genre)+
-  geom_histogram(bins = 30, na.rm = TRUE)
+  geom_histogram(bins = 30, na.rm = TRUE) +
+  labs(x = "Âge", y = "Effectif")
 ```
 
 Notre échantillon regroupe un nombre important de personnes ayant moins de 25 ans. De plus, le genre masculin prédomine dans notre échantillon.
@@ -98,7 +111,8 @@ Notre échantillon regroupe un nombre important de personnes ayant moins de 25 a
 
 ```{r graphique 5}
 chart(data = n_bio_fil, ~ fastfood)+
-  geom_bar(na.rm = TRUE)
+  geom_bar(na.rm = TRUE) +
+  labs(x = "Fast-food/semaine" , y = "Effectif")
 ```
 La plupart des individus de notre échantillon consomment entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
 

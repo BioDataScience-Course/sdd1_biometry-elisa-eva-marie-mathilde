@@ -45,19 +45,28 @@ n_bio_fil$acti_profession <- ordered(n_bio_fil$acti_profession,
 
 # Introduction
  
- 
+Dans ce projet nous allors étudier le taux d'obesite dans l'Hainaut à prtir de données colléctés dans cette région par difféentes personne. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à differentes mésurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
  
 # But 
 
- Nous avons effectué differentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier  le taux d'obesité dans cette région.
+Nous avons effectué differentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier le taux d'obesité dans cette région.
 
 # Materiels et méthodes 
  
- 
+Les paramètres mésurés et les et les informations à propos du mode de vie des individus peuvent être inspectés ci-dessous : 
+
+```{r}
+skimr::skim(n_bio_fil)
+```
+
+Pour effectuer les mésurations nous avons utilisé plusieurs outils tels que un mètre et une balance, qui n'etaient malhereusement pas les mêmes tout au long de l'étude. Ce-ci pourrait se traduire par des éventuels erreurs de calcul. 
 
 # Résultats
+
 ## Les graphiques
+
 ### Histogramme de la masse des individus selon le genre de ceux-ci
+
 ```{r graphique 1}
 chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
   geom_histogram(bins = 50, na.rm = TRUE)
@@ -66,7 +75,8 @@ chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
 La masse de l'échantillon est regrouper principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent en généralité une masse inférieur à celles des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
 
 
-###Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
+### Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
+
 ```{r graphique2}
 chart(data = n_bio_fil, log10(taille) ~ log10(masse) %col=% genre) +
   geom_point(na.rm=TRUE)+

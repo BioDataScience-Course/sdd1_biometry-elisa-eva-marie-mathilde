@@ -33,7 +33,6 @@ summary(n_bio)
 n_bio_fil <- filter(n_bio, taille != "NA")
 
 
-
 # change type
 
 n_bio_fil$genre <- factor(n_bio_fil$genre, levels = c("h", "f"))
@@ -46,21 +45,21 @@ vis_dat(n_bio_fil)
 
 # Introduction
  
-Dans ce projet nous alons étudier le taux d'obesité dans le Hainaut à partir de données colléctées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mesurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
+Dans ce projet nous allons étudier le taux d'obesité dans le Hainaut à partir de données collectées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mensurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
  
 # But 
 
-Nous avons effectué differentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier le taux d'obesité dans cette région.
+Nous avons effectué différentes mesures sur un nombre de 266 individus vivant dans le Hainaut afin de collecter un nombre de données suffisant pour étudier le taux d'obesité dans cette région.
 
 # Materiels et méthodes 
  
-Les paramètres mésurés et les et les informations à propos du mode de vie des individus peuvent être inspectés ci-dessous : 
+Les paramètres mesurés et les informations à propos du mode de vie des individus peuvent être inspectés ci-dessous : 
 
 ```{r}
 skimr::skim(n_bio_fil)
 ```
 
-Pour effectuer les mesurations nous avons utilisé plusieurs outils tels qu'un mètre et une balance, qui n'etaient malhereusement pas les mêmes tout au long de l'étude. Ce-ci pourrait se traduire par des éventuels erreurs de calcul. 
+Pour effectuer les mensurations nous avons utilisé plusieurs outils tels qu'un mètre et une balance, qui n'étaient malheureusement pas les mêmes tout au long de l'étude. Ceci pourrait se traduire par des éventuelles erreurs de calcul. 
 
 # Résultats
 
@@ -74,7 +73,7 @@ chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
   labs(x = "Masse corrigé[kg]", y = "Effectif")
 ```
 
-La masse de l'échantillon est regrouper principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent en généralité une masse inférieur à celles des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
+La masse de l'échantillon est regroupée principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent en généralité une masse inférieure à celle des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
 
 
 ### Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
@@ -87,7 +86,7 @@ chart(data = n_bio_fil, log10(taille) ~ log10(masse) %col=% genre) +
 
 Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithmique n'a pas linéalisé celui ci. 
 
-### Graphique violon de la masse selon l'activité professionnel
+### Graphique violon de la masse selon l'activité professionnelle
 
 ```{r graphique 3}
 chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
@@ -95,9 +94,9 @@ chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   labs(x = "Activité professionnelle", y = "Masse[kg]")
 ```
 
-Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelques soit leur profession. De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
+Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelque soit leur profession. De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
 
-### Histogramme de lâge par rapport au genre
+### Histogramme de l'âge par rapport au genre
 
 ```{r graphique 4}
 chart(data = n_bio_fil, ~ age %fill=% genre)+
@@ -108,16 +107,15 @@ chart(data = n_bio_fil, ~ age %fill=% genre)+
 Notre échantillon regroupe un nombre important de personnes ayant moins de 25 ans. De plus, le genre masculin prédomine dans notre échantillon.
 
 
-### Graphique en barre pour voir le dénombrement des fast food par semaine
+### Graphique en barre représentant le dénombrement de fast food par semaine
 
 ```{r graphique 5}
 chart(data = n_bio_fil, ~ fastfood)+
   geom_bar(na.rm = TRUE) +
   labs(x = "Fast-food/semaine" , y = "Effectif")
 ```
+
 La plupart des individus de notre échantillon consomment entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
-
-
 
 ## Test d'hypothèse
 
@@ -140,7 +138,7 @@ sum(n_bio_genre)
 chisq.test(n_bio_genre, p = c(1/2, 1/2), rescale.p = FALSE)
 ```
 
-Rejet de H0, il est clair que le nombre de femmes et des hommes n'est pas equivqlent.
+Rejet de H0, il est clair que le nombre de femmes et des hommes n'est pas équivalent.
 
 ## Test de Student
 
@@ -166,8 +164,9 @@ wilcox.test(data = n_bio_fil, masse ~ genre,
   alternative = "greater", conf.level = 0.95)
 ```
 
-On peut rejetter H0
+On peut rejeter H0
 
+## Test ANOVA
 
 ## Test de Kruskal-Wallis
 

@@ -39,13 +39,14 @@ n_bio_fil$genre <- factor(n_bio_fil$genre, levels = c("h", "f"))
 n_bio_fil$hainaut <- factor(n_bio_fil$hainaut, levels = c("o", "n"))
 n_bio_fil$acti_profession <- ordered(n_bio_fil$acti_profession,
                                      levels = c("sedentaire", "intermediaire", "actif"))
+
 vis_dat(n_bio_fil)
 
 ```
 
 # Introduction
  
-Dans ce projet nous allons étudier le taux d'obesité dans le Hainaut à partir de données collectées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mensurations de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
+Dans ce projet nous allons étudier le taux d'obésité dans le Hainaut à partir de données collectées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mesure de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
  
 # But 
 
@@ -59,7 +60,7 @@ Les paramètres mesurés et les informations à propos du mode de vie des indivi
 skimr::skim(n_bio_fil)
 ```
 
-Pour effectuer les mensurations nous avons utilisé plusieurs outils tels qu'un mètre et une balance, qui n'étaient malheureusement pas les mêmes tout au long de l'étude. Ceci pourrait se traduire par des éventuelles erreurs de calcul. 
+Pour effectuer les mensurations, nous avons utilisé plusieurs outils tels qu'un mètre ruban et une balance. Bien que ceux-ci ne fussent pas les mêmes tout au long de l'étude, ils ont été choisi avec soin. En effet, nous avons spécifiquement utilisé un mètre ruban car celui-ci n'évolue que faiblement dans le temps. De plus, nous avons calculé la masse selon la balance du laboratoire (masse_corr) afin que toute les masses soit comparable entre elles.  Nous pouvons donc considèrer nos valeurs fiables.
 
 # Résultats
 
@@ -91,16 +92,18 @@ Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. 
 ```{r graphique 3}
 chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   geom_violin(show.legend = FALSE) +
+  scale_fill_viridis_d() +
   labs(x = "Activité professionnelle", y = "Masse[kg]")
 ```
 
-Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelque soit leur profession. De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
+Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelque soit leur profession.
+De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
 
-### Histogramme de l'âge par rapport au genre
+### Graphique de densité de l'âge par rapport au genre
 
 ```{r graphique 4}
 chart(data = n_bio_fil, ~ age %fill=% genre)+
-  geom_histogram(bins = 30, na.rm = TRUE) +
+  geom_density(bins = 30, na.rm = TRUE) +
   labs(x = "Âge", y = "Effectif")
 ```
 
@@ -117,24 +120,25 @@ chart(data = n_bio_fil, ~ fastfood)+
 
 La plupart des individus de notre échantillon consomment entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
 
-## Test
+## Test d'analyse
 
 ### Test de Student
 
-H0 : moyenne masse femmes = moyenne masse hommes
-H1 : moyenne masse femmes != moyenne masse hommes 
+$$H_0 : \overline{masse_{des femmes}}\ - \overline{masse_{des hommes}}\ =0 $$
+$$H_1 : \overline{masse_{des femmes}}\ - \overline{masse_{des hommes}}\ \neq 0$$ 
  
 ```{r}
 t.test(data = n_bio_fil, masse ~ genre,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
 
-Nous rejetons H0 au seuil alpha = 5%. Il y a une différence significative entre les moyennes des masses. En effet, la moyenne de la masse des hommes est supérieure à la moyenne de la masse des femmes. (t.test = 6.6063, ddl = 264, p value = 4.6e-09).
+Nous rejetons H_0 au seuil alpha = 5%. Il y a une différence significative entre les moyennes des masses. En effet, la moyenne de la masse des hommes est supérieure à la moyenne de la masse des femmes. (t.test = 6.6063, ddl = 264, p value = 4.6e-09).
 
 ### Test ANOVA
 
-H0 : µtour_taille(homme) = µtour_taille(femme)
-H1 : µtour_taille(homme) != µtour_taille(femme)
+$$H_0 : µ_{tour taille des hommes} = µ_{tour taille des femme}$$
+$$H_1 : µ_{tour taille des hommes} \neq \ µ_{tour taille des femme}$$
+
 
 ```{r visualisation des données}
 n_bio_fil %>.%
@@ -148,10 +152,12 @@ Après réalisation d'un test de Bartlett (voir partie annexes), nous voyons qu'
 anova(anova. <- lm(data = n_bio_fil, tour_taille ~ genre))
 ```
 
-Nous pouvons rejeter H0 au seuil alpha = 5%. IL y a donc une différence significative entre les moyennes des tours de taille chez les hommes et les femmes. (ANOVA = 10.84, ddl = 1 & 251, p value = 0.001136).
-
+Nous pouvons rejeter H_0 au seuil alpha = 5%. IL y a donc une différence significative entre les moyennes des tours de taille chez les hommes et les femmes. (ANOVA = 10.84, ddl = 1 & 251, p value = 0.001136).
 
 # Discussion
+
+En résumé, notre échantillon est principalement centré sur une population jeune ( entre 15 et 25 ans) et majoritairement masculine. Elle comporte un grand nombre de personnes pesant entre 60 et 80 kg. La taille n'influençant que très peu celle-ci. Les personnes les plus légère ont une activité proffesionnel intermédiaire en terme de mouvement. De plus, nos individus ont un mode de vie approximativement sain. Des différences ce rencontre selon le genre. Les hommes ont en moyenne une masse plus grande que les femmes. De surcroît, les femmes possèdent un tour de taille inférieur à celui des hommes.
+
 
 # Conclusion
 

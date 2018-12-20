@@ -120,6 +120,34 @@ chart(data = n_bio_fil, ~ fastfood)+
 
 La plupart des individus de notre échantillon consomment entre 0 et 1 fast food par semaine. Nous pouvons donc considérer que notre population a un mode de vie relativement sain.
 
+
+## Calcul de l'IMC et du taux d'obésité
+
+```{r IMC}
+n_bio_fil <- mutate(n_bio_fil, bmi = masse_corr/taille ^2)
+```
+
+```{r OMS}
+n_bio_fil <- mutate(n_bio_fil,
+  bmi_schedule = case_when(
+    bmi < 18.5 ~ "underweight",
+    bmi >= 18.5 & bmi < 25 ~ "normal weight",
+    bmi >= 25 & bmi < 30 ~ "overweight",
+    bmi >= 30 ~ "obese"))
+```
+
+```{r summary}
+summary(n_bio_fil)
+```
+
+```{r obesity}
+n_bio_fil %>.%
+  filter(., bmi_schedule == "obese") %>.%
+  nrow(.) / nrow(n_bio_fil) * 100 
+```
+
+
+
 ## Test d'analyse
 
 ### Test de Student
@@ -156,10 +184,12 @@ Nous pouvons rejeter H_0 au seuil alpha = 5%. IL y a donc une différence signif
 
 # Discussion
 
-En résumé, notre échantillon est principalement centré sur une population jeune ( entre 15 et 25 ans) et majoritairement masculine. Elle comporte un grand nombre de personnes pesant entre 60 et 80 kg. La taille n'influençant que très peu celle-ci. Les personnes les plus légère ont une activité proffesionnel intermédiaire en terme de mouvement. De plus, nos individus ont un mode de vie approximativement sain. Des différences ce rencontre selon le genre. Les hommes ont en moyenne une masse plus grande que les femmes. De surcroît, les femmes possèdent un tour de taille inférieur à celui des hommes.
+En résumé, notre échantillon est principalement centré sur une population jeune ( entre 15 et 25 ans) et majoritairement masculine. Elle comporte un grand nombre de personnes pesant entre 60 et 80 kg. La taille n'influençant que très peu celle-ci. Les personnes les plus légère ont une activité profesionnelle intermédiaire en terme de mouvement. De plus, nos individus ont un mode de vie approximativement sain. Des différences se rencontrent selon le genre. Les hommes ont en moyenne une masse plus grande que les femmes. De surcroît, les femmes possèdent un tour de taille inférieur à celui des hommes.
 
 
 # Conclusion
+
+Grâce aux différents calculs effectués ci-dessus, nous pouvons en conclure qu'il y a entre 12 et 13 % d'obésité dans le Hainaut.
 
 # Annexes
 

@@ -60,7 +60,7 @@ Les paramètres mesurés et les informations à propos du mode de vie des indivi
 skimr::skim(n_bio_fil)
 ```
 
-Pour effectuer les mensurations, nous avons utilisé plusieurs outils tels qu'un mètre ruban et une balance. Bien que ceux-ci ne fussent pas les mêmes tout au long de l'étude, ils ont été choisi avec soin. En effet, nous avons spécifiquement utilisé un mètre ruban car celui-ci n'évolue que faiblement dans le temps. De plus, nous avons calculé la masse selon la balance du laboratoire (masse_corr) afin que toute les masses soit comparable entre elles.  Nous pouvons donc considèrer nos valeurs fiables.
+Pour effectuer les mensurations, nous avons utilisé plusieurs outils tels qu'un mètre ruban et une balance. Bien que ceux-ci n'étaient pas les mêmes tout au long de l'étude. Nous avons spécifiquement utilisé un mètre ruban car celui-ci n'évolue que faiblement dans le temps. De plus, nous avons calculé la masse selon la balance du laboratoire (masse_corr) afin que toutes les masses soient comparable entre elles. Nous pouvons donc considèrer nos valeurs fiables.
 
 # Résultats
 
@@ -74,7 +74,7 @@ chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
   labs(x = "Masse corrigé[kg]", y = "Effectif")
 ```
 
-La masse de l'échantillon est regroupée principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent en généralité une masse inférieure à celle des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
+La masse de l'échantillon est regroupée principalement autour des 60kg avec un second pic à 80kg. Les femmes possèdent généralement une masse inférieure à celle des hommes. Ceux-ci comporte même des individus de 120 kg et plus.
 
 
 ### Nuage de point du logarithme de la taille selon le logarithime de la masse par rapport au genre
@@ -96,7 +96,7 @@ chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   labs(x = "Activité professionnelle", y = "Masse[kg]")
 ```
 
-Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelque soit leur profession.
+Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelque soit leur acticité professionnelle.
 De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
 
 ### Graphique de densité de l'âge par rapport au genre
@@ -184,7 +184,7 @@ Nous pouvons rejeter H_0 au seuil alpha = 5%. IL y a donc une différence signif
 
 # Discussion
 
-En résumé, notre échantillon est principalement centré sur une population jeune ( entre 15 et 25 ans) et majoritairement masculine. Elle comporte un grand nombre de personnes pesant entre 60 et 80 kg. La taille n'influençant que très peu celle-ci. Les personnes les plus légère ont une activité profesionnelle intermédiaire en terme de mouvement. De plus, nos individus ont un mode de vie approximativement sain. Des différences se rencontrent selon le genre. Les hommes ont en moyenne une masse plus grande que les femmes. De surcroît, les femmes possèdent un tour de taille inférieur à celui des hommes.
+En résumé, notre échantillon est principalement centré sur une population jeune ( entre 15 et 25 ans) et majoritairement masculine. Elle comporte un grand nombre de personnes pesant entre 60 et 80 kg. La taille n'influençant que très peu celle-ci. Les personnes les plus légère ont une activité profesionnelle intermédiaire en terme de mouvement. De plus, nos individus ont un mode de vie approximativement sain. Des différences se rencontrent selon le genre. Les hommes ont en moyenne une masse plus grande que les femmes et donc celles-ci possèdent un tour de taille inférieur à celui des hommes.
 
 
 # Conclusion

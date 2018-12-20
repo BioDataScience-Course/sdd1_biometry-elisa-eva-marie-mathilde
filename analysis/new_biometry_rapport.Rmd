@@ -46,7 +46,7 @@ vis_dat(n_bio_fil)
 
 # Introduction
  
-Dans ce projet nous allons étudier le taux d'obésité dans le Hainaut à partir de données collectées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mesure de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
+Dans ce projet nous allons étudier le taux d'obésité dans le Hainaut à partir de données collectées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mesures de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
  
 # But 
 
@@ -60,7 +60,7 @@ Les paramètres mesurés et les informations à propos du mode de vie des indivi
 skimr::skim(n_bio_fil)
 ```
 
-Pour effectuer les mensurations, nous avons utilisé plusieurs outils tels qu'un mètre ruban et une balance. Bien que ceux-ci n'étaient pas les mêmes tout au long de l'étude. Nous avons spécifiquement utilisé un mètre ruban car celui-ci n'évolue que faiblement dans le temps. De plus, nous avons calculé la masse selon la balance du laboratoire (masse_corr) afin que toutes les masses soient comparable entre elles. Nous pouvons donc considèrer nos valeurs fiables.
+Pour effectuer les mensurations, nous avons utilisé plusieurs outils tels qu'un mètre ruban et une balance. Bien que ceux-ci n'étaient pas les mêmes tout au long de l'étude. Nous avons spécifiquement utilisé un mètre ruban car celui-ci n'évolue que faiblement dans le temps. De plus, nous avons calculé la masse selon la balance du laboratoire (masse_corr) afin que toutes les masses soient comparables entre elles. Nous pouvons donc considèrer nos valeurs fiables.
 
 # Résultats
 
@@ -85,9 +85,9 @@ chart(data = n_bio_fil, log(taille) ~ log(masse) %col=% genre) +
   labs( x = "log (masse[kg])", y = "log (taille[m])")
 ```
 
-Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithmique n'a pas linéalisé celui ci. 
+Contrairement à nos attentes, la taille n'a que peu d'importance sur la masse. Le fait d'avoir mis le graphique sous forme logarithmique n'a pas linéalisé celui-ci. 
 
-### Graphique violon de la masse selon l'activité professionnelle
+### Graphique en violon de la masse selon l'activité professionnelle
 
 ```{r graphique 3}
 chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
@@ -96,7 +96,7 @@ chart(data = n_bio_fil, masse ~ acti_profession %fill=%acti_profession) +
   labs(x = "Activité professionnelle", y = "Masse[kg]")
 ```
 
-Ce graphique nous permet de confirmer que la majorité des individus font entre 60-80kg quelque soit leur acticité professionnelle.
+Ce graphique nous permet de confirmer que la majorité des individus pèsent entre 60-80kg quelque soit leur acticité professionnelle.
 De plus, les personnes sédentaires ont un poids beaucoup plus élevé que ceux ayant un métier intermédiaire ou actif. Néanmoins, les personnes actives ne sont pas les plus minces comme on aurait pu le penser.
 
 ### Graphique de densité de l'âge par rapport au genre
@@ -146,14 +146,12 @@ n_bio_fil %>.%
   nrow(.) / nrow(n_bio_fil) * 100 
 ```
 
-
-
 ## Test d'analyse
 
 ### Test de Student
 
-$$H_0 : \overline{masse_{des femmes}}\ - \overline{masse_{des hommes}}\ =0 $$
-$$H_1 : \overline{masse_{des femmes}}\ - \overline{masse_{des hommes}}\ \neq 0$$ 
+$$H_0 : \overline{masse_{femmes}}\ - \overline{masse_{hommes}}\ =0 $$
+$$H_1 : \overline{masse_{femmes}}\ - \overline{masse_{hommes}}\ \neq 0$$ 
  
 ```{r}
 t.test(data = n_bio_fil, masse ~ genre,

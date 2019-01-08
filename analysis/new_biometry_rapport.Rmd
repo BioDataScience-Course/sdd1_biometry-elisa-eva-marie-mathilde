@@ -44,6 +44,10 @@ vis_dat(n_bio_fil)
 
 ```
 
+> GE: la fonction view , vis_dat et summary sont des fonctions d'explorations qui ne doivent pas figurer dans un rapport abouti.
+
+> GE: étant donné que l'ensemble de ce traitement est fait dnas le fichier new_biometry.R pourquoi le refaire dans votre rapport une seconde fois ?
+
 # Introduction
  
 Dans ce projet nous allons étudier le taux d'obésité dans le Hainaut à partir de données collectées dans cette région par différentes personnes. Les individus (hommes et femmes compris dans une classe d'âge entre 15 et 70 ans) on été soumis à différentes mesures de leurs corps et ont répondu à plusieurs questions concernant leur mode de vie. 
@@ -66,7 +70,11 @@ Pour effectuer les mensurations, nous avons utilisé plusieurs outils tels qu'un
 
 ## Les graphiques
 
+> GE: on ne parlera pas d'une section graphique, ce titre ne convient pas
+
 ### Histogramme de la masse des individus selon le genre de ceux-ci
+
+> GE: ce titre fait penser à un titre de graphique et pas d'une section
 
 ```{r graphique 1}
 chart(data = n_bio_fil, ~ masse_corr %fill=% genre) +
@@ -146,6 +154,8 @@ n_bio_fil %>.%
   nrow(.) / nrow(n_bio_fil) * 100 
 ```
 
+> GE: il manque du texte afin de comprendre votre analyse. Il n'est pas préciser qu'il s'agit du pourcentage d'obèse. sans lire vos lignes de codes, je dois être capable de comprendre votre rapport.
+
 ## Test d'analyse
 
 ### Test de Student
@@ -157,6 +167,8 @@ $$H_1 : \overline{masse_{femmes}}\ - \overline{masse_{hommes}}\ \neq 0$$
 t.test(data = n_bio_fil, masse ~ genre,
   alternative = "two.sided", conf.level = 0.95, var.equal = TRUE)
 ```
+
+> utilisations des formules sous Latex
 
 Nous rejetons H_0 au seuil alpha = 5%. Il y a une différence significative entre les moyennes des masses. En effet, la moyenne de la masse des hommes est supérieure à la moyenne de la masse des femmes. (t.test = 6.6063, ddl = 264, p value = 4.6e-09).
 

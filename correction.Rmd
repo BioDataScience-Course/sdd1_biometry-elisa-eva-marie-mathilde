@@ -1,0 +1,26 @@
+---
+title: "Correction globale"
+author: "Engels Guyliann"
+output: html_notebook
+---
+
+## Note
+
+La correction est en deux phases : 
+
+- correction globale qui est présentée dans ce fichier
+- correction fine du rapport dans le rapport directement à l'aide de `block quotes` > GE: que vous pouvez facilement rechercher.
+
+## Auteurs du travail 
+
+- Elisa
+- Eva
+- Marie
+- Mathilde
+
+## Remarques générales
+
+- Tous les étudiants ont participé à ce travail (contributors sur Github)
+
+- Bon travail dans l'ensemble avec une bonne organisation du projet. 
+
